@@ -17,6 +17,7 @@
     "autoload": {
         "psr-4": {
             "Goma\\ENV\\": "src/"
-        }
+        },
+        "files": ["src/DefineENV.php"]
     }
 }
