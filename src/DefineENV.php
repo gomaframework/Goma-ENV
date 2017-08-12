@@ -26,14 +26,14 @@ if(!is_dir(ROOT . CACHE_DIRECTORY)) {
 }
 
 // write tests
-if(file_put_contents(ROOT . APPLICATION . "/write.test", "")) {
+if(file_put_contents(ROOT . APPLICATION . "/write.test", "") !== false) {
     @unlink(ROOT . APPLICATION . "/write.test");
 } else {
     throw new Exception("Write-Test failed. Please allow write at /" . APPLICATION);
 }
 
 // write tests cache
-if(file_put_contents(ROOT . CACHE_DIRECTORY . "/write.test", "")) {
+if(file_put_contents(ROOT . CACHE_DIRECTORY . "/write.test", "") !== false) {
     @unlink(ROOT . CACHE_DIRECTORY . "/write.test");
 } else {
     throw new Exception("Write-Test failed. Please allow write at /" . CACHE_DIRECTORY);
