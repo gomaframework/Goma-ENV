@@ -32,4 +32,39 @@ class GomaENVTest extends \GomaUnitTest
             "--index", "-user=1"
         )));
     }
+
+    /**
+     * tests if isPHPUnit returns true in this case.
+     */
+    public function testIsPHPUnit() {
+        $this->assertTrue(GomaENV::isPHPUnit());
+    }
+
+    /**
+     * tests if isCommandLineInterface returns true in this case.
+     */
+    public function testIsCommandLineInterface() {
+        $this->assertTrue(GomaENV::isCommandLineInterface());
+    }
+
+    /**
+     * tests if getRoot works if project is this project and not embedded.
+     */
+    public function testGetRootThisProject() {
+        $this->assertEqual("/var/www/", GomaENV::getRoot("/var/www/src"));
+    }
+
+    /**
+     * tests if getRoot works if project is embedded.
+     */
+    public function testGetRootEmbeddedProject() {
+        $this->assertEqual("/var/www/", GomaENV::getRoot("/var/www/vendor/goma/goma-env/src"));
+    }
+
+    /**
+     * tests if getProjectLevelComposerArray returns an array
+     */
+    public function testGetProjectLevelComposerJSON() {
+        $this->assertTrue(is_array(GomaENV::getProjectLevelComposerArray()));
+    }
 }

@@ -4,15 +4,16 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2873e09f1fa159e06ae2ca92f31e8e9a",
-    "packages": [
+    "content-hash": "92568e6051692ffeb97d364f4409853e",
+    "packages": [],
+    "packages-dev": [
         {
             "name": "goma/goma-test-core",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://repo.goma-cms.org/scm/goma3/gomatestcore.git",
-                "reference": "60c8878ed6ed51c1859307099c88670be878cda4"
+                "reference": "31cf835ed6851dfa3a7267a5a2d1e09c958dd519"
             },
             "require": {
                 "php": ">=5.5.0"
@@ -34,10 +35,9 @@
                 }
             ],
             "description": "GomaUnitTest is a wrapper class to support PHP 5 and PHP 7 for tests. In addition it gives some helper asserts.",
-            "time": "2017-08-12 03:24:30"
+            "time": "2017-08-12T07:56:10+00:00"
         }
     ],
-    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
