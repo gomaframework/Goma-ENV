@@ -1,4 +1,5 @@
 <?php
+use Goma\ENV\GomaENV;
 /**
  * Defines environment constants.
  *
@@ -8,8 +9,7 @@
  * @copyright Goma-Team
  */
 
-use Goma\ENV\GomaENV;
-
+defined("EXEC_START_TIME") OR define("EXEC_START_TIME", microtime(true));
 define("IN_GOMA", 1);
 
 define("ROOT", GomaENV::getRoot());

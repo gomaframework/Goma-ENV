@@ -27,4 +27,8 @@ class DefinitionTest extends \GomaUnitTest
     public function testData() {
         $this->assertTrue(defined("APPLICATION"));
     }
+
+    public function testExecStartTime() {
+        $this->assertTrue(defined("EXEC_START_TIME"));
+    }
 }
