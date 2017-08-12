@@ -1,0 +1,22 @@
+{
+    "name": "goma/goma-env",
+    "description": "Goma ENV provides some basic concepts for PHP applications: Constants about FileSystem, central storage directory, cache directory as well as functions to get infos about the current environment.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Goma Team",
+            "email": "team@goma-cms.org"
+        }
+    ],
+    "license": "LGPL-3.0",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.0",
+        "goma/goma-test-core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Goma\\ENV\\": "src/"
+        }
+    }
+}
