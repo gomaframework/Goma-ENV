@@ -4,16 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "92568e6051692ffeb97d364f4409853e",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "79f4dc239a82da5608262ba8317b8669",
+    "packages": [
         {
             "name": "goma/goma-test-core",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://repo.goma-cms.org/scm/goma3/gomatestcore.git",
-                "reference": "31cf835ed6851dfa3a7267a5a2d1e09c958dd519"
+                "url": "https://github.com/gomaframework/GomaUnitTest.git",
+                "reference": "4f3f6e6360597a7e9eb052fdeb29ba2be3346c1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gomaframework/GomaUnitTest/zipball/4f3f6e6360597a7e9eb052fdeb29ba2be3346c1f",
+                "reference": "4f3f6e6360597a7e9eb052fdeb29ba2be3346c1f",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.5.0"
@@ -35,9 +40,10 @@
                 }
             ],
             "description": "GomaUnitTest is a wrapper class to support PHP 5 and PHP 7 for tests. In addition it gives some helper asserts.",
-            "time": "2017-08-12T07:56:10+00:00"
+            "time": "2017-08-12 10:19:04"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
