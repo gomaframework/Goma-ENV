@@ -10,8 +10,9 @@ Available constants
 
 * IN_GOMA: defines that this module is loaded
 * ROOT: root path of application, e.g. /var/www/
-* APPLICATION: data directory path segement, e.g. data
+* GOMA_DATADIR: data directory path segement, e.g. data
 * CACHE_DIRECTORY: cache directory path segement, e.g. data/temp/
+* DEV_MODE: boolean whether this environment is in development mode or not
 
 Available methods
 ---
@@ -29,6 +30,7 @@ Configuration
 This plugin can be configured in the project-level composer file:
 * goma_datadir: define data-dir, e.g. mysite
 * goma_tempdir: define temp-dir in data-dir, e.g. temp
+* goma_dev_mode: define if DEV_MODE is true or false
 
 This project belongs to the Goma Framework. See [Project Homepage](https://goma-cms.org).
 
