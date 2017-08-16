@@ -25,10 +25,14 @@ class DefinitionTest extends \GomaUnitTest
     }
 
     public function testData() {
-        $this->assertTrue(defined("APPLICATION"));
+        $this->assertTrue(defined("GOMA_DATADIR"));
     }
 
     public function testExecStartTime() {
         $this->assertTrue(defined("EXEC_START_TIME"));
+    }
+
+    public function testDevMode() {
+        $this->assertTrue(defined("DEV_MODE"));
     }
 }

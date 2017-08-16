@@ -115,6 +115,18 @@ class GomaENV
     }
 
     /**
+     * returns if this env is in dev-mode.
+     * @return bool
+     */
+    public static function isDevMode() {
+        if(isset(self::getProjectLevelComposerArray()["goma_dev_mode"])) {
+            return (bool) self::getProjectLevelComposerArray()["goma_dev_mode"];
+        }
+
+        return false;
+    }
+
+    /**
      * returns if command line interface.
      *
      * @return bool|null
