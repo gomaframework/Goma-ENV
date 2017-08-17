@@ -23,7 +23,8 @@ Available methods
 * GomaENV::getCacheDirectory(): string full path to cache directory
 * GomaENV::getDataDirectory(): string full path to data directory
 * GomaENV::getRoot(): string full path to root
-* GomaENV::getProjectLevelComposerArray(): array returns array of composer.json at root project
+* GomaENV::getProjectLevelComposerArray(): array returns array of composer.json for root project
+* GomaENV::getProjectLevelComposerInstalledArray(): array returns array of installed.json for root project
 
 Configuration
 ---

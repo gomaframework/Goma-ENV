@@ -27,6 +27,13 @@ class GomaENV
     private static $composerCache = null;
 
     /**
+     * cache for installed.json
+     *
+     * @var array|null
+     */
+    private static $composerInstalledCache = null;
+
+    /**
      * @param null|string $dir
      * @return bool|string
      */
@@ -49,7 +56,7 @@ class GomaENV
      * @return string
      */
     public static function getDataDirectory() {
-        return self::getRoot() . APPLICATION . "/";
+        return self::getRoot() . GOMA_DATADIR . "/";
     }
 
     /**
@@ -172,5 +179,18 @@ class GomaENV
         }
 
         return self::$composerCache;
+    }
+
+    /**
+     * decodes and returns installed.json at vendor/composer.
+     * @param string|null $dir directory in which this class is
+     * @return array|mixed|null
+     */
+    public static function getProjectLevelInstalledComposerArray($dir = null) {
+        if(!isset(self::$composerInstalledCache)) {
+            self::$composerInstalledCache = json_decode(file_get_contents(self::getRoot($dir) . "vendor/composer/installed.json"), true);
+        }
+
+        return self::$composerInstalledCache;
     }
 }
