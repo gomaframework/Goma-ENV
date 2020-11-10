@@ -15,6 +15,7 @@
     "goma/goma-test-core": "dev-master"
   },
   "require-dev": {
+    "phpunit/phpunit": "7.*"
   },
   "autoload": {
     "psr-4": {
