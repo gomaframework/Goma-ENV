@@ -7,11 +7,15 @@ namespace Goma\ENV;
  *
  * @package goma/env
  * @author Goma-Team
- * @license	GNU Lesser General Public License, version 3; see "LICENSE.txt"
+ * @license    GNU Lesser General Public License, version 3; see "LICENSE.txt"
  * @copyright Goma-Team
  */
 class GomaENV
 {
+    /**
+     * 64 * 1024 * 1024
+     */
+    const DEFAULT_MEMORY_LIMIT = 67108864;
     /**
      * cache variable for isCommandLineInterface()
      *
@@ -37,13 +41,14 @@ class GomaENV
      * @param null|string $dir
      * @return bool|string
      */
-    public static function getRoot($dir = null) {
-        if(!isset($dir)) {
+    public static function getRoot($dir = null)
+    {
+        if (!isset($dir)) {
             $dir = dirname(__FILE__);
         }
 
-        $vendorPath = "vendor/goma/goma-env/src";
-        if(substr($dir, 0 - strlen($vendorPath)) == $vendorPath) {
+        $vendorPath = join(DIRECTORY_SEPARATOR, ["vendor", "goma", "goma-env", "src"]);
+        if (substr($dir, 0 - strlen($vendorPath)) == $vendorPath) {
             return substr($dir, 0, strlen($dir) - strlen($vendorPath));
         }
 
@@ -55,8 +60,9 @@ class GomaENV
      *
      * @return string
      */
-    public static function getDataDirectory() {
-        return self::getRoot() . GOMA_DATADIR . "/";
+    public static function getDataDirectory()
+    {
+        return self::getRoot().GOMA_DATADIR."/";
     }
 
     /**
@@ -64,8 +70,9 @@ class GomaENV
      *
      * @return string
      */
-    public static function getCacheDirectory() {
-        return self::getRoot() . CACHE_DIRECTORY;
+    public static function getCacheDirectory()
+    {
+        return self::getRoot().CACHE_DIRECTORY;
     }
 
     /**
@@ -79,20 +86,22 @@ class GomaENV
      * @param array|null $args
      * @return array
      */
-    public static function getCommandLineArgs($args = null) {
-        if(!isset($args)) {
+    public static function getCommandLineArgs($args = null)
+    {
+        if (!isset($args)) {
             $args = isset($_SERVER["argv"]) ? $_SERVER["argv"] : array();
         }
 
         $parsedArgs = array();
-        foreach($args as $arg) {
+        foreach ($args as $arg) {
             $parts = explode("=", $arg);
-            if(isset($parts[1])) {
+            if (isset($parts[1])) {
                 $parsedArgs[$parts[0]] = $parts[1];
             } else {
                 $parsedArgs[$parts[0]] = $parts[0];
             }
         }
+
         return $parsedArgs;
     }
 
@@ -101,8 +110,9 @@ class GomaENV
      * @param array|null $args
      * @return bool
      */
-    public static function isPHPUnit($args = null) {
-        if(!isset($args)) {
+    public static function isPHPUnit($args = null)
+    {
+        if (!isset($args)) {
             $args = isset($_SERVER["argv"]) ? $_SERVER["argv"] : array();
         }
 
@@ -115,7 +125,8 @@ class GomaENV
      * @param array|null $args
      * @return bool
      */
-    public static function isDevModeCLI($args = null) {
+    public static function isDevModeCLI($args = null)
+    {
         $args = self::getCommandLineArgs($args);
 
         return isset($args["--dev"]);
@@ -125,9 +136,10 @@ class GomaENV
      * returns if this env is in dev-mode.
      * @return bool
      */
-    public static function isDevMode() {
-        if(isset(self::getProjectLevelComposerArray()["goma_dev_mode"])) {
-            return (bool) self::getProjectLevelComposerArray()["goma_dev_mode"];
+    public static function isDevMode()
+    {
+        if (isset(self::getProjectLevelComposerArray()["goma_dev_mode"])) {
+            return (bool)self::getProjectLevelComposerArray()["goma_dev_mode"];
         }
 
         return false;
@@ -140,8 +152,9 @@ class GomaENV
      */
     public static function isCommandLineInterface()
     {
-        if(!isset(self::$isCommandLineInterface)) {
-            self::$isCommandLineInterface = (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_numeric($_SERVER['argc']) && $_SERVER['argc'] > 0)));
+        if (!isset(self::$isCommandLineInterface)) {
+            self::$isCommandLineInterface = (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name(
+                    ) == 'cli' || (is_numeric($_SERVER['argc']) && $_SERVER['argc'] > 0)));
         }
 
         return self::$isCommandLineInterface;
@@ -153,8 +166,9 @@ class GomaENV
      * @param int $default
      * @return int
      */
-    public static function getMemoryLimit($default = 64 * 1024 * 1024) {
-        if(function_exists("ini_get")) {
+    public static function getMemoryLimit($default = self::DEFAULT_MEMORY_LIMIT)
+    {
+        if (function_exists("ini_get")) {
             $memory_limit = ini_get('memory_limit');
             if (preg_match('/^(\d+)(.)$/', $memory_limit, $matches)) {
                 if ($matches[2] == 'M') {
@@ -173,9 +187,10 @@ class GomaENV
      * @param string|null $dir directory in which this class is
      * @return array|mixed|null
      */
-    public static function getProjectLevelComposerArray($dir = null) {
-        if(!isset(self::$composerCache)) {
-            self::$composerCache = json_decode(file_get_contents(self::getRoot($dir) . "composer.json"), true);
+    public static function getProjectLevelComposerArray($dir = null)
+    {
+        if (!isset(self::$composerCache)) {
+            self::$composerCache = json_decode(file_get_contents(self::getRoot($dir)."composer.json"), true);
         }
 
         return self::$composerCache;
@@ -186,9 +201,13 @@ class GomaENV
      * @param string|null $dir directory in which this class is
      * @return array|mixed|null
      */
-    public static function getProjectLevelInstalledComposerArray($dir = null) {
-        if(!isset(self::$composerInstalledCache)) {
-            self::$composerInstalledCache = json_decode(file_get_contents(self::getRoot($dir) . "vendor/composer/installed.json"), true);
+    public static function getProjectLevelInstalledComposerArray($dir = null)
+    {
+        if (!isset(self::$composerInstalledCache)) {
+            self::$composerInstalledCache = json_decode(
+                file_get_contents(self::getRoot($dir)."vendor/composer/installed.json"),
+                true
+            );
         }
 
         return self::$composerInstalledCache;
